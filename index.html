@@ -18,18 +18,26 @@
         </div>
     </div>
 
-    <div class="videoContainer">
-        <video id="video">
-            <source src="video.mp4" />   
+    <div class = "videoContainer">
+        <video width="720" height="480" controls="controls" id="video">
+            <source id="src">
         </video>
-
-        <div class="controls">
-            <button id="play">
-                <i class="fa fa-play"></i>
-            </button>
+        <div>
+            <input type="file" accept="video/*" id="upload" onchange="upload()">
+            <button id="start">Transcript</button> 
         </div>
     </div>
     
+    <script>
+        function upload(){
+            var input=document.getElementById("upload");
+            var freeder = new FileReader();
+            freeder.readAsDataURL(input.files[0]);
+            freeder.onload=function(){
+                document.getElementById("video").src=freeder.result;
+            }
+        }
+    </script>
 
     <!-- <input type="file"/> -->
 </body>
