@@ -2,6 +2,7 @@
 
 ScriptIt is a Python application for transcribing video files. It is intended to be used for transcribing video lectures of courses, but it can be used for any other video as well. The production version will have functionality to search text within videos, and to extract dates from PDF documents to generate schedules. 
 
+![ScriptIt's dashboard interface.](img/dashboard.png)
 
 ## Build
 
