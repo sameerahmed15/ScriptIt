@@ -2,7 +2,7 @@ import eel
 import speech_recognition as sr
 import moviepy.editor as mp
 import base64
-import tempfile
+# import tempfile
 import os
 
 # temp_path = tempfile.gettempdir()
