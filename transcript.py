@@ -15,7 +15,6 @@ def main():
     with file as source:
         audio = r.listen(source)
 
-
         print("Converting Audio To Text ..... ")
 
 
