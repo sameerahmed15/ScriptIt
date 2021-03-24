@@ -21,21 +21,42 @@
         <div class="container">
             <h2 class="logo" href="#">Script<span>It</span></h2>
             <ul>                    
-                    <li class="current"><a href="#">Home</a></li>
+                    <li class="current"><a href="index.html">Home</a></li>
                     <li><a href="#">Lecture Videos</a></li>
+                    <li><a href="#">Generate Schedule</a></li>
             </ul>
         </div>
     </div>
 
     <div class = "videoContainer">
-        <video width="720" height="480" controls="controls" id="video">
-            <source id="src">
+        <video id="video" class="video-js" controls preload="auto" width="640" height="264" data-setup="{}">
+            <!-- <source id="src" src="../pyvideo.mp4" type="video/mp4"> -->
+            <!-- <track kind="captions" src="mycaptions.vtt" srclang="en" label="English" default> -->
         </video>
         <div>
-            <input type="file" accept="video/*" id="upload" onchange="uploadVideo()">
+            <input type="file" accept="video/*" id="uploadVideo" onchange="uploadVideo()">
             <button id="startTranscript" onclick="readFile()">Transcript</button> 
         </div>
     </div>
+    <!-- <div id="transcript">
+        <script>
+            var video = videojs('video').ready(function(){
+            // Set up any options.
+            var options = {
+                // showTitle: false,
+                // showTrackSelector: false,
+                scrollToCenter: true
+            };
+        
+            // Initialize the plugin.
+            var transcript = this.transcript(options);
+        
+            // Then attach the widget to the page.
+            var transcriptContainer = document.querySelector('#transcript');
+            transcriptContainer.appendChild(transcript.el()); 
+            }); 
+        </script>
+    </div> -->
 </body>
 
 </html>
