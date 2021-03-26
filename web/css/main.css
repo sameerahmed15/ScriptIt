@@ -11,57 +11,208 @@
     text-decoration: none;
 }
 body{
+    height: 95vh;
     background: #F2F2F2;
     margin:0;
     font-family: 'Poppins';
-    
-}
-.navbar{
-    display: flex;
-    position: relative;
 }
 
-.navbar .container{
+.navbar {
     position: fixed;
     background: #fafafa;
-    width: 200px;
+    width: 60px;
     height: 100%;
-   
+    transition: 0.5s;
+    overflow: hidden;
+    
 }
-.navbar .container ul li{
-    padding: 15px;
+.navbar:hover{
+    background-color: #E3E3E3;
+    width: 225px;
+}
+
+.navbar ul
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.navbar ul li{
+    /* padding: 15px; */
     margin-bottom: 3em;
+    position: relative;
+    width: 100%;
+    list-style: none;
     /* border-bottom: 1px solid rgba(0,0,0,0.05);
     border-top: 1px solid rgba(225, 225,225, 0.05); */
     font-size: 1em;
 }
+.navbar ul li:hover{
+    background: white;
+}
 
-.navbar .container ul li a{
+.navbar ul li a{
+    position: relative;
     color: black;
     display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
 }
 
-.navbar .container ul li:hover{
-    background-color: #E3E3E3;;
+.navbar ul li a .icon
+{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
 }
+
+.navbar ul li a .icon .fa{
+
+    font-size: 24px;
+}
+
+.navbar ul li a .title
+{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+
+}
+
 .logo{
     text-decoration: none;
     font-weight: bold;
     color: var(--primary-color);
     font-size: 1em;
-    margin-bottom: 30px;
-    margin-left: 1em;
+    padding-left: 0.75em;
+    font-size: 25px;
+    background-color:rgb(59, 59, 59);
 }
 .logo span{
-    color: black;
+    color: white;
 }
 
 .videoContainer{
-
-    width: 700px;
+    width: 30%;
     margin: 3em 500px;
+    align-content: center;
 }
 #video{
     width: 100%;
     display: block;
 }
+.drag-area{
+    align-content: center;
+    margin-left: 300px;
+    margin-top: 1%;
+    border: 2px dashed black;
+    height: 240px;
+    width: 320px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+  }
+  .drag-area.active{
+    border: none;
+    background-color: #F2F2F2;
+  }
+  .drag-area .icon{
+    font-size: 40px;
+    color: #14955D;
+  }
+  .drag-area header{
+    font-size: 15px;
+    font-weight: 500;
+    color: #14955D;
+  }
+  .drag-area span{
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    margin: 10px 0 15px 0;
+  }
+  .drag-area button{
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #14955D;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .drag-area img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .button1{
+    border: none;
+    color: white;
+    background-color:#14955D;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: 425px;
+    border-radius: 5px;
+  }
+
+  .button1:hover{
+    background-color: white;
+    color: black;
+  }
+  
+  *,
+  *:before,
+  *:after {
+      box-sizing: border-box;
+  }
+  
+  .toolbar {}
+  .tool-list {
+      display: flex;
+      flex-flow: row nowrap;
+      list-style: none;
+      padding: 0;
+      margin-left: 300px;
+      margin-top: 30px;
+      overflow: hidden;
+      border-radius: 10px;
+  }
+  .tool {}
+  .tool--btn {
+      display: block;
+      border: none;
+      padding: .5rem;
+      font-size: 20px;
+      margin: auto;
+  }
+  
+  #output {
+      background-color: white;
+      width: 50%;
+      height: 30vh; 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      margin: auto;
+      padding: 1rem;
+      overflow: auto;
+  }

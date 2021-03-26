@@ -7,56 +7,131 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     
     <title>ScriptIt</title>
     
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="container">
-            <h2 class="logo" href="#">Script<span>It</span></h2>
-            <ul>                    
-                    <li class="current"><a href="index.html">Home</a></li>
-                    <li><a href="#">Lecture Videos</a></li>
-                    <li><a href="#">Generate Schedule</a></li>
-            </ul>
-        </div>
+    <div class="container">
+        <h2 class="logo" href="pages/home.html">Script<span>It</span></h2>
     </div>
 
-    <div class = "videoContainer">
-        <video id="video" class="video-js" controls preload="auto" width="640" height="264" data-setup="{}">
-            <!-- <source id="src" src="../pyvideo.mp4" type="video/mp4"> -->
-            <!-- <track kind="captions" src="mycaptions.vtt" srclang="en" label="English" default> -->
-        </video>
-        <div>
-            <input type="file" accept="video/*" id="uploadVideo" onchange="uploadVideo()">
-            <button id="startTranscript" onclick="readFile()">Transcript</button> 
-        </div>
+    <div class="navbar">
+            <ul>
+                <li>
+                    <a href="pages/home.html">
+                        <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <span class="icon"><i class="fa fa-file-video-o" aria-hidden="true"></i></span>
+                        <span class="title">Lecture Videos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/schedule.html">
+                        <span class="icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                        <span class="title">Course Schedule</span>
+                    </a>
+                </li>
+            </ul>
+
     </div>
-    <!-- <div id="transcript">
-        <script>
-            var video = videojs('video').ready(function(){
-            // Set up any options.
-            var options = {
-                // showTitle: false,
-                // showTrackSelector: false,
-                scrollToCenter: true
-            };
-        
-            // Initialize the plugin.
-            var transcript = this.transcript(options);
-        
-            // Then attach the widget to the page.
-            var transcriptContainer = document.querySelector('#transcript');
-            transcriptContainer.appendChild(transcript.el()); 
-            }); 
-        </script>
-    </div> -->
+
+    <div class="drag-area">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button>Browse File</button>
+        <input type="file" accept="video/*" hidden>
+        <script src="pages/fileUpload.js"></script>
+    </div>
+
+    <button class="button1" onclick="readFile()">Transcribe</button>
+
+    <div class="toolbar">
+        <ul class="tool-list">
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command='justifyLeft'
+                    class="tool--btn">
+                    <i class=' fas fa-align-left'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command='justifyCenter' 
+                    class="tool--btn">
+                    <i class=' fas fa-align-center'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command="bold" 
+                    class="tool--btn">
+                    <i class=' fas fa-bold'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command="italic"
+                    class="tool--btn">
+                    <i class=' fas fa-italic'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command="underline"
+                    class="tool--btn">
+                    <i class=' fas fa-underline'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command="insertOrderedList"
+                    class="tool--btn">
+                    <i class=' fas fa-list-ol'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command="insertUnorderedList"
+                    class="tool--btn">
+                    <i class=' fas fa-list-ul'></i>
+                </button>
+            </li>
+            <li class="tool">
+                <button 
+                    type="button" 
+                    data-command="createlink" 
+                    class="tool--btn">
+                    <i class=' fas fa-link'></i>
+                </button>
+            </li>
+        </ul>
+        <script src="notepad.js"></script>
+    </div>
+    
+    <div id="output" contenteditable="true"></div>
+
 </body>
 
 </html>

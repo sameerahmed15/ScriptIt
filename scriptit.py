@@ -2,7 +2,6 @@ import eel
 import speech_recognition as sr
 import moviepy.editor as mp
 import base64
-import pdfplumber as pb 
 from ibm_watson import SpeechToTextV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import json
@@ -25,30 +24,40 @@ def transcribe(fileObj):
     vid = mp.VideoFileClip('pyvideo.mp4')
     vid.audio.write_audiofile('result.wav')
 
+    print('Transcribing...')
+
+    results = []
+    text = []
     with open('result.wav', 'rb') as source:
         result = stt.recognize(audio=source, model='en-US_BroadbandModel', timestamps=True).get_result()
-    
+        results.append(result)
+
+    for file in results:
+        for result in file['results']:
+            text.append(result['alternatives'][0]['transcript'].rstrip() + '. ')    
+
     with open('transcript.json', 'w', encoding='utf-8') as out:
         json.dump(result, out, ensure_ascii=False, indent=4)
 
-    print('Transcription done.')
-    return('Transcription success!')
+    print('Transcription - Done.')
+
+    return(''.join(text))
 
 
-@eel.expose
-def extractText(pdfObj):
-    with pb.open(pdfObj) as pdf:
-        pages = []
-        word = 'Assesment:'
-        for i in range(len(pdf.pages)):
-            page_string = pdf.pages[i].extract_text(x_tolerance=3, y_tolerance=3)
-            
-            if page_string.find(word):
-                pages.append(page_string)
-
-    with open('sched.txt', 'w') as f:
-        for page in pages:
-            f.write("%s\n" % page)
-    return('Generation success!')
+# @eel.expose
+# def extractText(pdfObj):
+#     with pb.open(pdfObj) as pdf:
+#         pages = []
+#         word = 'Assesment:'
+#         for i in range(len(pdf.pages)):
+#             page_string = pdf.pages[i].extract_text(x_tolerance=3, y_tolerance=3)
+#
+#             if page_string.find(word):
+#                 pages.append(page_string)
+#
+#     with open('sched.txt', 'w') as f:
+#         for page in pages:
+#             f.write("%s\n" % page)
+#     return('Generation success!')
 
 eel.start('index.html')
