@@ -2,7 +2,7 @@
 
 ScriptIt is a Python application for transcribing video files. It is intended to be used for transcribing video lectures of courses, but it can be used for any other video as well. The production version will have functionality to search text within videos, and to extract dates from PDF documents to generate schedules. 
 
-![ScriptIt's dashboard interface.](img/dashboard.png)
+![ScriptIt's dashboard interface.](img/lecture_videos.png)
 
 ## Build
 
@@ -30,5 +30,5 @@ In case the application is not built, enter the following command in a terminal 
     - Minimum version required: 0.12.1
 3. [MoviePy](https://pypi.org/project/moviepy/)
     - Minimum version required: 1.0.0
-4. [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
-    - Minimum version required: 3.6.0
+4. [IBM Watson](https://pypi.org/project/ibm-watson/)
+    - Recommended version: 5.1.0
