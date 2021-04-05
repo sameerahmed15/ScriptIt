@@ -1,21 +1,28 @@
-function uploadVideo() {
-    var input = document.getElementById("uploadVideo");
-    var freeder = new FileReader();
-    freeder.readAsDataURL(input.files[0]);
-    freeder.onload = function() {
-        document.getElementById("video").src=freeder.result;
-    }
-}
+function loadVideo() {
+    document.getElementById("video-status").innerHTML = `<p>Loading...</p>`;
 
-function readFile() {
     var event = document.getElementById("uploadVideo");
     var file = event.src;
-    processVideoContent(file);
+    var fileName = event.getAttribute("name");
+    var uid = Date.now(); // Can use UUID npm module for a better unique id
+    // Invoke python function
+    eel.addToLocal(file, fileName, uid)(function(ret) {
+        var videoStatus = `<p>Video added to database!<br>ID: <span id="uid">${ret}</span></p>`;
+        document.getElementById("video-status").innerHTML = videoStatus;
+        document.getElementById("transcribe").disabled = false;
+    })
 }
 
-function processVideoContent(data) {
-    eel.transcribe(data)(function(ret) {document.getElementById("output").innerHTML = JSON.stringify(ret)})
+
+function transcribeVideo() {
+    var event = document.getElementById("uploadVideo");
+    // var file = event.src;
+    var fileName = event.getAttribute("name");
+    var uid = document.getElementById("uid").innerText;
+    
+    eel.transcribe(uid, fileName)(function(ret) {document.getElementById("output").innerHTML = JSON.stringify(ret);})
 }
+
 
 function readPdf() {
     var event = document.getElementById("uploadPdf");

@@ -58,7 +58,11 @@
         <script src="pages/fileUpload.js"></script>
     </div>
 
-    <button class="button1" onclick="readFile()">Transcribe</button>
+    <button id="confirm-video" class="button1" onclick="loadVideo()" disabled=true>Confirm Video Upload</button>
+   
+    <div id="video-status"></div>
+    
+    <button id="transcribe" class="button1" onclick="transcribeVideo()" disabled=true>Transcribe</button>
 
     <div class="toolbar">
         <ul class="tool-list">
