@@ -46,3 +46,5 @@ Open your terminal and follow the steps below to successfully run the applicatio
 ![ScriptIt's transcript interface.](img/transcript.png)
 
 ![ScriptIt's transcript edit interface.](img/edit.png)
+
+![ScriptIt's keyword search interface.](img/word-search.png)
