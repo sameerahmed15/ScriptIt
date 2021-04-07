@@ -190,8 +190,6 @@ button:disabled {
   box-sizing: border-box;
 }
 
-.toolbar {
-}
 .tool-list {
   display: flex;
   flex-flow: row nowrap;
@@ -223,4 +221,16 @@ button:disabled {
 #video-status {
   display: flex;
   justify-content: center;
+}
+
+.interactive-transcript-container {
+  left: 50%;
+  border: 1px black;
+  text-align: center;
+  width: 40%;
+}
+
+.interactive-transcript-container > #interactive-transcript {
+  margin: auto;
+  overflow: auto;
 }

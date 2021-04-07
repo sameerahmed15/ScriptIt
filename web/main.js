@@ -1,3 +1,22 @@
+function editCustom(nam, val) {
+    if (val == "CUSTOM412") {
+        document.getElementById(nam).innerHTML = `<input type="text" name="${nam}" onchange="editCustom(this.name, this.value)">`;
+    } else {
+        var uid = document.getElementById("uid").innerText;
+        console.log(nam, ' : ', val)
+
+        eel.change_transcript(uid, nam, val)(function(ret) {});
+    }
+}
+
+
+function seekVideo(seekTime) {
+    var vid = document.getElementById("uploadVideo");
+    vid.currentTime = seekTime;
+    vid.play();
+}
+
+
 function loadVideo() {
     document.getElementById("video-status").innerHTML = `<p>Loading...</p>`;
 
@@ -6,7 +25,7 @@ function loadVideo() {
     var fileName = event.getAttribute("name");
     var uid = Date.now(); // Can use UUID npm module for a better unique id
     // Invoke python function
-    eel.addToLocal(file, fileName, uid)(function(ret) {
+    eel.add_to_local(file, fileName, uid)(function(ret) {
         var videoStatus = `<p>Video added to database!<br>ID: <span id="uid">${ret}</span></p>`;
         document.getElementById("video-status").innerHTML = videoStatus;
         document.getElementById("transcribe").disabled = false;
@@ -19,31 +38,26 @@ function transcribeVideo() {
     // var file = event.src;
     var fileName = event.getAttribute("name");
     var uid = document.getElementById("uid").innerText;
+    document.getElementById("video-status").innerHTML = `<p>Generating Transcript...</p>`;
     
-    eel.transcribe(uid, fileName)(function(ret) {document.getElementById("output").innerHTML = JSON.stringify(ret);})
+    eel.transcribe(uid, fileName)(function(ret) {
+        var transcriptStatus = `<p>Transcript generated!<br>ID: <span id="uid">${uid}</span></p>`;
+        document.getElementById("video-status").innerHTML = transcriptStatus;
+        document.getElementById("interactive-transcript").innerHTML = ret;
+    })
 }
 
 
-function readPdf() {
-    var event = document.getElementById("uploadPdf");
-
-    var file = event.files[0];
-    if (file) {
-        new Promise(function(resolve, reject) {
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                resolve(evt.target.result);
-            };
-            reader.readAsDataURL(file);
-            reader.onerror = reject;
-        })
-        .then(processPdfContent)
-        .catch(function(err) {
-            console.log(err);
-        });
-    }
+function editTranscript() {
+    var uid = document.getElementById("uid").innerText;
+    eel.edit_transcript(uid)(function(ret) {
+        document.getElementById("interactive-transcript").innerHTML = ret;
+    })
 }
 
-function processPdfContent(data) {
-    eel.extractText(data)(function(ret) { })
+function exitEditTranscript() {
+    var uid = document.getElementById("uid").innerText;
+    eel.generate_interactive_transcript(uid)(function(ret) {
+        document.getElementById("interactive-transcript").innerHTML = ret;
+    })
 }

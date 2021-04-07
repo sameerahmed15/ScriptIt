@@ -8,7 +8,9 @@ def init_db(db_name):
                 UID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 VideoPath TEXT,
                 AudioPath TEXT,
-                TranscriptPath TEXT
+                TranscriptPath TEXT,
+                IntTrnFilePath TEXT,
+                EditTrnFilePath TEXT
             );'''
         
         con = sl.connect(db_name)
@@ -22,10 +24,20 @@ def init_db(db_name):
     return con
 
 
-def add_info_to_db(con, uid, VideoPath, AudioPath, TranscriptPath):
-    append_video_sql = 'INSERT INTO Video (UID, VideoPath, AudioPath, TranscriptPath) values(?, ?, ?, ?)'
+def add_info_to_db(con, uid, VideoPath, AudioPath, TranscriptPath, IntTrnFilePath, EditTrnFilePath):
+    # append_video_sql = 'INSERT INTO Video (UID, VideoPath, AudioPath, TranscriptPath, IntTrnFilePath, EditTrnFilePath) values(?, ?, ?, ?, ?)'
+    
+    append_video_sql = '''INSERT INTO Video (
+                UID,
+                VideoPath,
+                AudioPath,
+                TranscriptPath,
+                IntTrnFilePath,
+                EditTrnFilePath
+            ) values (?, ?, ?, ?, ?, ?);'''
+    
     data = [
-        (uid, VideoPath, AudioPath, TranscriptPath)
+        (uid, VideoPath, AudioPath, TranscriptPath, IntTrnFilePath, EditTrnFilePath)
     ]
 
     con.executemany(append_video_sql, data)
@@ -58,6 +70,14 @@ def get_path(con, uid, file_type):
 
     if file_type == 'json':
         get_record_sql = 'SELECT TranscriptPath FROM Video WHERE UID=?'
+        path = cur.execute(get_record_sql, param)
+
+    if file_type == 'inttrn':
+        get_record_sql = 'SELECT IntTrnFilePath FROM Video WHERE UID=?'
+        path = cur.execute(get_record_sql, param)
+    
+    if file_type == 'edittrn':
+        get_record_sql = 'SELECT EditTrnFilePath FROM Video WHERE UID=?'
         path = cur.execute(get_record_sql, param)
 
 
