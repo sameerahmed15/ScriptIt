@@ -32,3 +32,43 @@ In case the application is not built, enter the following command in a terminal 
     - Minimum version required: 1.0.0
 4. [IBM Watson](https://pypi.org/project/ibm-watson/)
     - Recommended version: 5.1.0
+
+## Build
+
+Open your terminal and follow the steps below to successfully run the application in your device.
+
+1. Create a virtual environment:
+    - On macOS and Linux:
+  
+        `python3 -m venv env`
+        
+    - On Windows:
+        
+        `py -m venv env`
+        
+2. Activate the virtual environment"
+    - On macOS and Linux:
+  
+        `source env/bin/activate`
+        
+    - On Windows:
+        
+        `.\env\Scripts\activate`
+
+3. Change directory to where the requirements.txt file is downloaded
+    - On macOS and Linux:
+        
+        `pip3 install -r requirements.txt`
+        
+    - On Windows:
+        
+        `pip install -r requirements.txt`
+        
+4. Change directory to where the `scriptit.py` file is stored
+    
+    `python scriptit.py`
+        
+        
+     
+      
+
