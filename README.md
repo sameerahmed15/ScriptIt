@@ -18,7 +18,7 @@ Open your terminal and follow the steps below to successfully run the applicatio
         
         `py -m venv env`
         
-2. Activate the virtual environment"
+2. Activate the virtual environment:
     - On macOS and Linux:
   
         `source env/bin/activate`
@@ -27,7 +27,7 @@ Open your terminal and follow the steps below to successfully run the applicatio
         
         `.\env\Scripts\activate`
 
-3. Change directory to where the requirements.txt file is downloaded
+3. Change directory to where the requirements.txt file is downloaded:
     - On macOS and Linux:
         
         `pip3 install -r requirements.txt`
@@ -36,7 +36,7 @@ Open your terminal and follow the steps below to successfully run the applicatio
         
         `pip install -r requirements.txt`
         
-4. Change directory to where the `scriptit.py` file is stored
+4. Change directory to where the `scriptit.py` file is stored:
     
     `python scriptit.py`
         
