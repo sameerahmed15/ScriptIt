@@ -39,8 +39,10 @@ Open your terminal and follow the steps below to successfully run the applicatio
 4. Change directory to where the `scriptit.py` file is stored:
     
     `python scriptit.py`
-        
-        
-     
-      
 
+
+## Additional Screenshots
+
+![ScriptIt's transcript interface.](img/transcript.png)
+
+![ScriptIt's transcript edit interface.](img/edit.png)
