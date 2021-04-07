@@ -4,31 +4,43 @@ ScriptIt is a Python application for transcribing video files. It is intended to
 
 ![ScriptIt's dashboard interface.](img/lecture_videos.png)
 
+
 ## Build
 
-***Ensure that python 3.x.x is set as your default python.*** 
+Open your terminal and follow the steps below to successfully run the application in your device.
 
-Run the following commands in a terminal at the project directory:
-1. `pip install pyinstaller`
-2. `python -m eel scriptit.py web --noconsole --onefile`
+1. Create a virtual environment:
+    - On macOS and Linux:
+  
+        `python3 -m venv env`
+        
+    - On Windows:
+        
+        `py -m venv env`
+        
+2. Activate the virtual environment"
+    - On macOS and Linux:
+  
+        `source env/bin/activate`
+        
+    - On Windows:
+        
+        `.\env\Scripts\activate`
 
-The application executable will be found in the *dist* directory.
+3. Change directory to where the requirements.txt file is downloaded
+    - On macOS and Linux:
+        
+        `pip3 install -r requirements.txt`
+        
+    - On Windows:
+        
+        `pip install -r requirements.txt`
+        
+4. Change directory to where the `scriptit.py` file is stored
+    
+    `python scriptit.py`
+        
+        
+     
+      
 
-
-## Running the Application
-
-In case the application is not built, enter the following command in a terminal at the project directory:
-
-`python main.py`
-
-
-## Prerequisites
-
-1. [Python 3.x.x](https://www.python.org/downloads/)
-    - Minimum version required: Python 3.0.0
-2. [Eel](https://pypi.org/project/Eel/)
-    - Minimum version required: 0.12.1
-3. [MoviePy](https://pypi.org/project/moviepy/)
-    - Minimum version required: 1.0.0
-4. [IBM Watson](https://pypi.org/project/ibm-watson/)
-    - Recommended version: 5.1.0
