@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Course Schedule</title>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="logo" href="#">Script<span>It</span></h2>
+    </div>
+
+    <div class="navbar">
+            <ul>
+                <li>
+                    <a href="../index.html">
+                        <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="lecture-videos.html">
+                        <span class="icon"><i class="fa fa-file-video-o" aria-hidden="true"></i></span>
+                        <span class="title">Lecture Videos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="search.html">
+                        <span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        <span class="title">Search in Videos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courseGenerator.html">
+                        <span class="icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                        <span class="title">Course Schedule</span>
+                    </a>
+                </li>
+            </ul>
+    </div>
+
+    <div class="drag-area-pdf">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button>Browse File</button>
+        <input type="file" accept="pdf/*" hidden>
+        <script src="fileUploadPDF.js"></script>
+    </div>
+
+    <table>
+        <tr>
+            <td>
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                    <div>
+                        <label>Assessment Type*</label><label class="validation-error hide" id="AssessmentValidationError">This field is required.</label>
+                            <input list="Assessment-datalist" type="text" name="Assessment" id="Assessment"/>
+                            <datalist id="Assessment-datalist">
+                            </datalist>
+
+
+                    </div>
+                    <div>
+                        <!-- <label>Weight</label>
+                        <input type="text" name="weight" id="weight"> -->
+                        <label>Weight
+                            <input list="weight-datalist" type="text" name="weight" id="weight"/></label>
+                            <datalist id="weight-datalist">
+                            </datalist>
+                    </div>
+                    <div>
+                        <!-- <label>Date</label>
+                        <input type="text" name="date" id="date"> -->
+                        <label>Date
+                            <input list="date-datalist" type="text" name="date" id="date"/></label>
+                            <datalist id="date-datalist"></datalist>
+
+                    </div>
+                    <div  class="form-action-buttons">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <table class="list" id="employeeList">
+                    <thead>
+                        <tr>
+                            <th>Assessment Type</th>
+                            <th>Weight</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script src="courseTable.js"></script>
+
+
+
+</body>
+</html>
