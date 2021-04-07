@@ -1,5 +1,4 @@
 import eel
-import speech_recognition as sr
 import moviepy.editor as mp
 import base64
 from ibm_watson import SpeechToTextV1
