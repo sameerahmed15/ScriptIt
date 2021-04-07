@@ -95,6 +95,11 @@ body {
   color: white;
 }
 
+.container {
+  position: sticky;
+  top: 0%;
+}
+
 .videoContainer {
   width: 30%;
   margin: 3em 500px;
@@ -107,7 +112,7 @@ body {
 
 .drag-area {
   align-content: center;
-  margin-left: 300px;
+  margin-left: 32%;
   margin-top: 1%;
   border: 2px dashed black;
   height: 240px;
@@ -163,12 +168,12 @@ body {
   padding: 1%;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
-  margin-left: 425px;
   border-radius: 5px;
+  width: 30%;
+  margin-left: 35%;
 }
 
 .button1:hover:enabled {
@@ -224,13 +229,51 @@ button:disabled {
 }
 
 .interactive-transcript-container {
-  left: 50%;
+  left: 100%;
   border: 1px black;
   text-align: center;
-  width: 40%;
+  margin-top: 5%;
 }
 
 .interactive-transcript-container > #interactive-transcript {
   margin: auto;
   overflow: auto;
+  width: 50%;
+  display: inline-block;
+}
+
+#transcript-default {
+  color: gray;
+}
+
+.search {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+  margin-top: 5%;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.search > input {
+  width: 100%;
+  border: none;
+}
+
+.search > input:focus {
+  width: 100%;
+  outline: none !important;
+  border: none;
+}
+
+#search-status {
+  color: gray;
+  margin: 10% 40%;
+  width: 40%;
+}
+
+#search-results-div {
+  margin: 10% 10%;
+  text-align: center;
 }

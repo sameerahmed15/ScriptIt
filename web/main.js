@@ -11,10 +11,6 @@ function checkCookie() {
         var uid = localStorage["uid"];
         transcriptExists = (transcriptExists == 'true');
 
-        console.log(videoObj);
-        console.log(typeof(transcriptExists));
-        console.log(transcriptExists);
-        console.log(transcriptObj);
         document.getElementById("load-existing").innerHTML = videoObj;
         document.getElementById("video-status").innerHTML = `ID: <span id="uid">${uid}</span></p>`;
 
@@ -64,6 +60,7 @@ function loadVideo() {
     eel.add_to_local(file, fileName, uid)(function(ret) {
         var videoStatus = `<p>Video added to database!<br>ID: <span id="uid">${ret}</span></p>`;
         document.getElementById("video-status").innerHTML = videoStatus;
+        document.getElementById("confirm-video").disabled = true;
         document.getElementById("transcribe-btn").disabled = false;
     })
 }
@@ -81,6 +78,7 @@ function transcribeVideo() {
         var transcriptStatus = `<p>Transcript generated!<br>ID: <span id="uid">${uid}</span></p>`;
         document.getElementById("video-status").innerHTML = transcriptStatus;
         document.getElementById("interactive-transcript").innerHTML = ret;
+        document.getElementById("transcribe-btn").disabled = true;
     })
 }
 
@@ -108,15 +106,21 @@ function listVideos() {
 }
 
 
-function showVideo(uid) {
-    var name = document.getElementById(uid).innerText;
-    
-    eel.show_video(uid, name)(function(ret) {
+function showVideo(uid, time=-10) {
+    eel.show_video(uid, time)(function(ret) {
         console.log(ret)
         localStorage["lectureVideoShow"] = ret[0];
         localStorage["transcriptExists"] = ret[1];
         localStorage["transcriptShow"] = ret[2];
         localStorage["uid"] = ret[3];
         window.location.href = "../index.html";
+    })
+}
+
+
+function searchWord(word) {
+    console.log(word);
+    eel.search_word(word)(function(ret) {
+        document.getElementById("search-results-div").innerHTML = ret;
     })
 }

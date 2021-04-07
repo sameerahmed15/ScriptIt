@@ -97,3 +97,20 @@ def transcript_modify(transcript_path, timestamp, new_word):
 
     print(f'Updated Transcript! New word: {new_word}')
     return True
+
+
+def transcript_search(word, transcript_path, uid, search_results):
+    result = None
+    index = 0
+
+    with open(transcript_path, 'r') as content:
+        result = json.load(content)
+
+    if word in result['transcript']:
+        for word_obj in result['word_alternatives']:
+            if word_obj['alternatives'][0]['word'] == word:
+                word_time = word_obj['start_time']
+                search_results.append([word, word_time, uid])
+            index += 1
+
+    return search_results

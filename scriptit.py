@@ -119,19 +119,22 @@ def load_videos_dir():
     videos_list = os.listdir(videos_dir_path)
     dom_elements = ''
 
-    for name in videos_list:
-        uid = name[-17:-4]
-        dom_elements += f'<button id="{uid}" class="button1" onclick="showVideo({uid})">{name}</button>\n'
+    for video in videos_list:
+        uid = video[-17:-4]
+        dom_elements += f'<button id="{uid}" class="button1" onclick="showVideo({uid})">{video}</button>\n'
 
     return dom_elements
 
 
 @eel.expose
-def show_video(uid, name):
+def show_video(uid, time=-10):
     uid = int(uid)
     video_path = db.get_path(con, uid, 'mp4')
+    video_dir = os.path.join(LOCAL_APP_DIR, 'Videos')
+
     transcript_path = db.get_path(con, uid, 'json')
     is_transcript_exists = False
+    name = video_path.replace(video_dir, '')[1:]
 
     with open(video_path, 'rb') as video:
         video_b64 = base64.b64encode(video.read())
@@ -147,6 +150,33 @@ def show_video(uid, name):
     
     dom_elements = [video_dom, is_transcript_exists, transcript_dom, uid]
     
+    return dom_elements
+
+
+@eel.expose
+def search_word(word):
+    transcripts_dir_path = os.path.join(LOCAL_APP_DIR, 'Transcripts')
+    transcripts_list = os.listdir(transcripts_dir_path)
+    search_results = []
+    dom_elements = ''
+
+    for transcript in transcripts_list:
+        uid = int(transcript[-18:-5])
+        transcript_path = os.path.join(transcripts_dir_path, transcript)
+        tops.transcript_search(word, transcript_path, uid, search_results)
+
+    for i in range(len(transcripts_list)):
+        occurrence = search_results[i]
+        time = occurrence[1]
+        uid = occurrence[2]
+        video_name = f'{transcripts_list[i][:-4]}mp4'
+
+        dom_elements += (f'<p id="{uid}" class="search-results">'
+                         f'Found "{word}" in "{video_name}" '
+                         f'at <button id="{time}" '
+                         f'onclick="showVideo({uid},{time})">'
+                         f'{time}s</button></p>\n')
+
     return dom_elements
 
 
