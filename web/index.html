@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
+
 </head>
 
-<body>
+<body onload="checkCookie()">
     <div class="container">
         <h2 class="logo" href="pages/index.html">Script<span>It</span></h2>
     </div>
@@ -46,7 +46,7 @@
 
     </div>
 
-    <div class="drag-area">
+    <div class="drag-area" id="load-existing">
         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
         <header>Drag & Drop to Upload File</header>
         <span>OR</span>
@@ -59,7 +59,9 @@
 
     <div id="video-status"></div>
 
-    <button id="transcribe" class="button1" onclick="transcribeVideo()" disabled=true>Transcribe</button>
+    <div id="transcribe">
+        <button id="transcribe-btn" class="button1" onclick="transcribeVideo()" disabled=true>Transcribe</button>
+    </div>
 
     <div class="interactive-transcript-container">
         <p id="interactive-transcript-title">TRANSCRIPT</p>

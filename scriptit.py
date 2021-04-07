@@ -39,8 +39,6 @@ def add_to_local(video_obj, video_name, uid):
     video_file_path = os.path.join(video_folder_path, video_name)
     audio_file_path = os.path.join(audio_folder_path, video_name[:-3]+'wav')
     transcript_file_path = os.path.join(transcript_folder_path, video_name[:-3]+'json')
-    inttrndom_file_path = os.path.join(transcript_folder_path, 'inttrndom_'+video_name[:-3]+'txt')
-    edittrndom_file_path = os.path.join(transcript_folder_path, 'edittrndom_'+video_name[:-3]+'txt')
 
     if not os.path.exists(video_folder_path):
         os.makedirs(video_folder_path)
@@ -58,8 +56,7 @@ def add_to_local(video_obj, video_name, uid):
 
     # Create database entry
     db_info_added = db.add_info_to_db(
-        con, uid, video_file_path, audio_file_path, transcript_file_path,
-        inttrndom_file_path, edittrndom_file_path
+        con, uid, video_file_path, audio_file_path, transcript_file_path
     )
     return uid
 
@@ -70,7 +67,6 @@ def transcribe(uid, file_name):
 
     audio_file_path = db.get_path(con, uid, 'wav')
     transcript_file_path = db.get_path(con, uid, 'json')
-    dom_file_path = db.get_path(con, uid, 'inttrn')
 
     results = []
     text = []
@@ -97,26 +93,62 @@ def transcribe(uid, file_name):
 
 @eel.expose
 def generate_interactive_transcript(uid):
-    transcript_file_path = db.get_path(con, uid, 'json')
-    dom_file_path = db.get_path(con, uid, 'inttrn')
-    return tops.transcript_parser(transcript_file_path, dom_file_path)
+    transcript_path = db.get_path(con, uid, 'json')
+
+    return tops.transcript_parser(transcript_path)
 
 
 @eel.expose
 def edit_transcript(uid):
     transcript_path = db.get_path(con, uid, 'json')
-    dom_path = db.get_path(con, uid, 'edittrn')
 
-    edit_dom_field = tops.transcript_edit(transcript_path, dom_path)
-    return edit_dom_field
+    return tops.transcript_edit(transcript_path)
 
 
 @eel.expose
 def change_transcript(uid, timestamp, new_word):
     transcript_path = db.get_path(con, uid, 'json')
     is_modified = tops.transcript_modify(transcript_path, float(timestamp), new_word)
-    
+
     return is_modified
+
+
+@eel.expose
+def load_videos_dir():
+    videos_dir_path = os.path.join(LOCAL_APP_DIR, 'Videos')
+    videos_list = os.listdir(videos_dir_path)
+    dom_elements = ''
+
+    for name in videos_list:
+        uid = name[-17:-4]
+        dom_elements += f'<button id="{uid}" class="button1" onclick="showVideo({uid})">{name}</button>\n'
+
+    return dom_elements
+
+
+@eel.expose
+def show_video(uid, name):
+    uid = int(uid)
+    video_path = db.get_path(con, uid, 'mp4')
+    transcript_path = db.get_path(con, uid, 'json')
+    is_transcript_exists = False
+
+    with open(video_path, 'rb') as video:
+        video_b64 = base64.b64encode(video.read())
+    video_b64 = 'data:video/mp4;base64,' + video_b64.decode('utf-8')
+
+    video_dom = f'<video name="{name}" src="{video_b64}" id="uploadVideo" width="320" height="240" controls></video>\n'
+    
+    if os.path.exists(transcript_path):
+        is_transcript_exists = True
+        transcript_dom = generate_interactive_transcript(uid)
+    else:
+        transcript_dom = '<button id="transcribe-btn" class="button1" onclick="transcribeVideo()" disabled=false>Transcribe</button>'
+    
+    dom_elements = [video_dom, is_transcript_exists, transcript_dom, uid]
+    
+    return dom_elements
+
 
 
 eel.start('index.html')

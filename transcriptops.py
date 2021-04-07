@@ -1,7 +1,7 @@
 import json
 
 
-def transcript_parser(transcript_path, dom_path):
+def transcript_parser(transcript_path):
     result = None
     with open(transcript_path, 'r') as content:
         result = json.load(content)
@@ -27,13 +27,11 @@ def transcript_parser(transcript_path, dom_path):
 
     dom_elements += (f'\n<button class="button1" '
                      f'onclick="editTranscript()">Edit</button>')
-    with open(dom_path, "w") as out:
-        out.write(dom_elements)
 
     return dom_elements
 
 
-def transcript_edit(transcript_path, dom_path):
+def transcript_edit(transcript_path):
     result = None
     with open(transcript_path, 'r') as content:
         result = json.load(content)
@@ -75,9 +73,6 @@ def transcript_edit(transcript_path, dom_path):
 
     dom_elements += (f'\n<button class="button1" '
                      f'onclick="exitEditTranscript()">Exit</button>')
-
-    with open(dom_path, "w") as out:
-        out.write(dom_elements)
 
     return dom_elements
 
