@@ -43,12 +43,17 @@ Open your terminal and follow the steps below to successfully run the applicatio
 
 5. (Optional) You can run the schedule scraper file by:
     
-    `python schedule.py`
+    `python3 schedule.py`
 
 
 6. (Optional) You can run the Google Calendar event creator  file by:
     
-    `python google_calendar.py`
+    `python3 google_calendar.py`
+
+
+6. To leave and deactivate the virtual environment, simply run:
+    
+    `deactivate`
 
 
 ## Additional Screenshots
