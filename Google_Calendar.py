@@ -17,8 +17,7 @@ def create_event(start_time_str, summary, duration=1, description='D2L', locatio
     thisYear = now.year
     if len(matches):
         start_time = matches[0]
-        end_time = datetime.datetime(
-            thisYear, start_time.month, start_time.day, 23, 59, 59)
+        end_time = start_time+datetime.timedelta(hours=1)
 
         event = {
             'summary': summary,
@@ -43,4 +42,4 @@ def create_event(start_time_str, summary, duration=1, description='D2L', locatio
         return service.events().insert(calendarId='primary', body=event).execute()
 
 
-create_event('april 9 11 pm', 'assessment_name')
+create_event('april 9 10 pm', 'assessment_name')
