@@ -1,7 +1,7 @@
 import json
 
 
-def transcript_parser(transcript_path):
+def transcript_parser(transcript_path, uid, time=-10):
     result = None
     with open(transcript_path, 'r') as content:
         result = json.load(content)
@@ -16,9 +16,13 @@ def transcript_parser(transcript_path):
         best_word = word_obj['alternatives'][0]['word']
         best_word = best_word.replace('<', '')
         transcript_text.append(best_word)
-        dom_elements += (f'<button class="transcript-btns" '
+        html_id = f'btn-{best_word}'
+        dom_elements += (f'<button id="{html_id}" '
                          f'onclick=seekVideo({word_time})>'
                          f'{best_word}</button>\n')
+        if word_time == time:
+            dom_elements += f'<style>#{html_id} '
+            dom_elements += '{background-color:#FFDD61;}</style>\n'
 
     # Append entire transcript text based on word_alternatives
     result['transcript'] = ' '.join(transcript_text)

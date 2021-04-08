@@ -108,7 +108,6 @@ function listVideos() {
 
 function showVideo(uid, time=-10) {
     eel.show_video(uid, time)(function(ret) {
-        console.log(ret)
         localStorage["lectureVideoShow"] = ret[0];
         localStorage["transcriptExists"] = ret[1];
         localStorage["transcriptShow"] = ret[2];
@@ -119,7 +118,6 @@ function showVideo(uid, time=-10) {
 
 
 function searchWord(word) {
-    console.log(word);
     eel.search_word(word)(function(ret) {
         document.getElementById("search-results-div").innerHTML = ret;
     })

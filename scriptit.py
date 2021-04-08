@@ -1,4 +1,5 @@
 import eel
+import bottle_websocket
 import moviepy.editor as mp
 import base64
 from ibm_watson import SpeechToTextV1
@@ -91,10 +92,10 @@ def transcribe(uid, file_name):
 
 
 @eel.expose
-def generate_interactive_transcript(uid):
+def generate_interactive_transcript(uid, time=-10):
     transcript_path = db.get_path(con, uid, 'json')
 
-    return tops.transcript_parser(transcript_path)
+    return tops.transcript_parser(transcript_path, uid, time)
 
 
 @eel.expose
@@ -143,7 +144,7 @@ def show_video(uid, time=-10):
     
     if os.path.exists(transcript_path):
         is_transcript_exists = True
-        transcript_dom = generate_interactive_transcript(uid)
+        transcript_dom = generate_interactive_transcript(uid, time)
     else:
         transcript_dom = '<button id="transcribe-btn" class="button1" onclick="transcribeVideo()" disabled=false>Transcribe</button>'
     
