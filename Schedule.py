@@ -27,7 +27,7 @@ Months = {'January': 'JAN',
           'November': 'NOV',
           'December': 'DEC'}
 
-with pdfplumber.open(r"C:\Users\HP\Documents\GitHub\Software_Design_Project\test files\5400.pdf") as pdf:
+with pdfplumber.open('5400.pdf') as pdf:
     for pdf_page in pdf.pages:
         data = pdf_page.extract_text()
         start = data.upper().find("ASSESSMENT")
