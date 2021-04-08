@@ -41,6 +41,16 @@ Open your terminal and follow the steps below to successfully run the applicatio
     `python scriptit.py`
 
 
+5. (Optional) You can run the schedule scraper file by:
+    
+    `python schedule.py`
+
+
+6. (Optional) You can run the Google Calendar event creator  file by:
+    
+    `python google_calendar.py`
+
+
 ## Additional Screenshots
 
 ![ScriptIt's transcript interface.](img/transcript.png)
