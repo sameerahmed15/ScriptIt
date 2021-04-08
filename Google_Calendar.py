@@ -43,4 +43,4 @@ def create_event(start_time_str, summary, duration=1, description='D2L', locatio
         return service.events().insert(calendarId='primary', body=event).execute()
 
 
-create_event('april 9', 'assessment_name')
+create_event('april 9 11 pm', 'assessment_name')
