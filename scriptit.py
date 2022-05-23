@@ -12,8 +12,8 @@ import transcriptops as tops
 
 eel.init('web')
 
-apikey = 'K_d21K8lTISFuDw8yr3r-kW2Bp842hdq8aKtH71Z9fP0'
-url = 'https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/682e072a-737a-4529-a421-700e0063c77c'
+apikey = '#'
+url = 'https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/#'
 
 auth = IAMAuthenticator(apikey)
 stt = SpeechToTextV1(authenticator=auth)
